@@ -1,9 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-<<<<<<< HEAD
-int menu();
-=======
 int menus(int menu);
 void item_menu();
 void customer_menu();
@@ -11,21 +8,11 @@ void sales_menu();
 void receiving_items_menu();
 void reports_and_alerts_menu();
 
->>>>>>> emman
 
 int main()
 {
     while (1)
         {
-<<<<<<< HEAD
-        switch (menu())
-            {
-            case 1:printf("\t\t1\n"); system("pause");break;
-            case 2:printf("\t\t2\n"); system("pause");break;
-            case 3:printf("\t\t3\n"); system("pause");break;
-            case 4:printf("\t\t4\n"); system("pause");break;
-            case 5:printf("\t\t5\n"); system("pause");break;
-=======
         switch (menus(1))
             {
             case 1:item_menu(); break;
@@ -33,7 +20,6 @@ int main()
             case 3:sales_menu(); break;
             case 4:receiving_items_menu(); break;
             case 5:reports_and_alerts_menu(); break;
->>>>>>> emman
             case 6:exit(0);
             default:printf("\nSelect 1-6 ONLY!\n"); system("pause");
             }
@@ -41,23 +27,6 @@ int main()
 
 }
 
-<<<<<<< HEAD
-int menu()
-{
-    int op;
-    system("cls");
-    printf("\tFurniture-Sales-and-Inventory-System\n\n");
-    printf("\tMAIN MENU\n\n");
-    printf("1.) Items\n");
-    printf("2.) Customers\n");
-    printf("3.) Sales\n");
-    printf("4.) Receiving Items\n");
-    printf("5.) Reposrts & Alerts\n");
-    printf("6.) Exit\n");
-    printf("Select: ");
-    scanf("%d",&op);
-    return op;
-=======
 int menus(int menu)
 {
 // main menu = 1
@@ -269,5 +238,4 @@ void reports_and_alerts_menu()
             default:printf("\nSelect 1-4 ONLY!\n"); system("pause");
         }
     }
->>>>>>> emman
 }

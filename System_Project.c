@@ -1,5 +1,103 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
+#define MAX_CUSTOMERS 5
+
+struct Customer {
+char name[50];
+char address [100];
+char phone[50];
+char email[50];
+};
+
+struct Customer customers [MAX_CUSTOMERS];
+int num_customers = 0;
+
+void add_customer() {
+    system("cls");
+    if (num_customers == MAX_CUSTOMERS) {
+        printf("The list is Full!\n");
+        system("pause");
+        return;
+    }
+
+    struct Customer new_customer;
+    printf("\t Input Customers Information\n\n");
+    printf("Enter Customer Name: ");
+    fgets(new_customer.name, 50, stdin);
+    printf("Enter Address: ");
+    fgets(new_customer.address, 100, stdin);
+    printf("Enter Phone Number: ");
+    fgets(new_customer.phone, 20, stdin);
+    printf("Enter Email Address: ");
+    fgets(new_customer.email, 50, stdin);
+
+    new_customer.name[strcspn(new_customer.name, "\n")] = 0;
+    new_customer.address[strcspn(new_customer.address, "\n")] = 0;
+    new_customer.phone[strcspn(new_customer.phone, "\n")] = 0;
+    new_customer.email[strcspn(new_customer.email, "\n")] = 0;
+
+    customers[num_customers] = new_customer;
+    num_customers++;
+
+    printf("Customer added successfully.\n");
+    system("pause");
+}
+
+void delete_customer() {
+    system("cls");
+    if (num_customers == 0) {
+        printf("The list is empty!\n");
+        system("pause");
+        return;
+    }
+
+    int index;
+    printf("Enter Customer Index/Number: ");
+    scanf("%d", &index);
+    getchar();
+
+    if (index < 1 || index > num_customers) {
+        printf("Invalid Index.\n");
+        system("pause");
+        return;
+    }
+
+    index--; // Adjust for zero-based array indexing
+
+    // Delete customer from array
+    for (int i = index; i < num_customers-1; i++) {
+        customers[i] = customers[i+1];
+    }
+    num_customers--;
+
+    printf("Customer deleted successfully!\n");
+    system("pause");
+
+}
+
+void list_customers() {
+    system("cls");
+    if (num_customers == 0) {
+        printf("No customers to display!\n");
+        system("pause");
+        return;
+    }
+    system("cls");
+    printf("List of Customers\n");
+    printf("-------------\n");
+
+    for (int i = 0; i < num_customers; i++) {
+        printf("Customer %d:\n", i+1);
+        printf("Name: %s\n", customers[i].name);
+        printf("Address: %s\n", customers[i].address);
+        printf("Phone: %s\n", customers[i].phone);
+        printf("Email: %s\n", customers[i].email);
+        printf("\n");
+    }
+    system("pause");
+}
 
 int menus(int menu);
 void item_menu();
@@ -38,7 +136,7 @@ int menus(int menu)
     int op;
     switch (menu)
         {
-            case 1:// main menu 
+            case 1:// main menu
                 system("cls");
                 printf("\tFurniture-Sales-and-Inventory-System\n\n");
                 printf("\tMAIN MENU\n\n");
@@ -53,7 +151,7 @@ int menus(int menu)
                 return op;
             break;
 
-            case 2: // item_menu 
+            case 2: // item_menu
                 system("cls");
                 printf("\tFurniture-Sales-and-Inventory-System\n\n");
                 printf("\tITEM MENU\n\n");
@@ -65,7 +163,7 @@ int menus(int menu)
                 return op;
             break;
 
-            case 3: // customer_menu 
+            case 3: // customer_menu
                 system("cls");
                 printf("\tFurniture-Sales-and-Inventory-System\n\n");
                 printf("\tCUSTOMER MENU\n\n");
@@ -78,7 +176,7 @@ int menus(int menu)
                 return op;
             break;
 
-            case 4: // sales_menu 
+            case 4: // sales_menu
                 system("cls");
                 printf("\tFurniture-Sales-and-Inventory-System\n\n");
                 printf("\tSALES MENU\n\n");
@@ -102,7 +200,7 @@ int menus(int menu)
                 return op;
             break;
 
-            case 6: // reports_and_alerts_menu 
+            case 6: // reports_and_alerts_menu
                 system("cls");
                 printf("\tFurniture-Sales-and-Inventory-System\n\n");
                 printf("\tREPORTS AND ALERTS MENU\n\n");
@@ -123,18 +221,18 @@ void item_menu()
     {
         switch (menus(2))
         {
-            case 1: 
+            case 1:
                 printf("\t\t1\n"); system("pause");
             break;
 
-            case 2: 
+            case 2:
                 printf("\t\t2\n"); system("pause");
             break;
 
-            case 3: 
+            case 3:
                 return;
             break;
-            
+
             default:printf("\nSelect 1-3 ONLY!\n"); system("pause");
         }
     }
@@ -142,26 +240,58 @@ void item_menu()
 
 void customer_menu()
 {
+    int choice;
+    system("cls");
     while (1)
     {
         switch (menus(3))
         {
-            case 1: 
-                printf("\t\t1\n"); system("pause");
-            break;
+    case 1:
+    system("cls");
+    do {
+        system("cls");
+        printf("\tCustomer Management\n\n");
+        printf("1. Add a Customer\n");
+        printf("2. Delete a Customer\n");
+        printf("3. List of Customers\n");
+        printf("4. Exit\n");
+        printf("Enter Number: ");
+        scanf("%d", &choice);
+        getchar();
 
-            case 2: 
+        switch (choice) {
+            case 1:
+                add_customer();
+                break;
+            case 2:
+                delete_customer();
+                break;
+            case 3:
+                list_customers();
+                break;
+            case 4:
+                exit(0);
+            default:
+                printf("Invalid input!\n");
+        }
+    } while (choice != 4);
+
+
+     return 0;
+     system("pause"); break;
+
+            case 2:
                 printf("\t\t2\n"); system("pause");
             break;
 
-            case 3: 
+            case 3:
                 printf("\t\t3\n"); system("pause");
             break;
 
-            case 4: 
+            case 4:
                 return;
             break;
-            
+
             default:printf("\nSelect 1-4 ONLY!\n"); system("pause");
         }
     }
@@ -173,18 +303,18 @@ void sales_menu()
     {
         switch (menus(4))
         {
-            case 1: 
+            case 1:
                 printf("\t\t1\n"); system("pause");
             break;
 
-            case 2: 
+            case 2:
                 printf("\t\t2\n"); system("pause");
             break;
 
-            case 3: 
+            case 3:
                 return;
             break;
-            
+
             default:printf("\nSelect 1-3 ONLY!\n"); system("pause");
         }
     }
@@ -196,18 +326,18 @@ void receiving_items_menu()
     {
         switch (menus(5))
         {
-            case 1: 
+            case 1:
                 printf("\t\t1\n"); system("pause");
             break;
 
-            case 2: 
+            case 2:
                 printf("\t\t2\n"); system("pause");
             break;
 
-            case 3: 
+            case 3:
                 return;
             break;
-            
+
             default:printf("\nSelect 1-3 ONLY!\n"); system("pause");
         }
     }
@@ -219,22 +349,22 @@ void reports_and_alerts_menu()
     {
         switch (menus(6))
         {
-            case 1: 
+            case 1:
                 printf("\t\t1\n"); system("pause");
             break;
 
-            case 2: 
+            case 2:
                 printf("\t\t2\n"); system("pause");
             break;
 
-            case 3: 
+            case 3:
                 printf("\t\t3\n"); system("pause");
             break;
 
-            case 4: 
+            case 4:
                 return;
             break;
-            
+
             default:printf("\nSelect 1-4 ONLY!\n"); system("pause");
         }
     }

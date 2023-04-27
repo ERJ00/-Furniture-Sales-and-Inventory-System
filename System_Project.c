@@ -246,39 +246,39 @@ void customer_menu()
     {
         switch (menus(3))
         {
-    case 1:
-    system("cls");
-    do {
-        system("cls");
-        printf("\tCustomer Management\n\n");
-        printf("1. Add a Customer\n");
-        printf("2. Delete a Customer\n");
-        printf("3. List of Customers\n");
-        printf("4. Exit\n");
-        printf("Enter Number: ");
-        scanf("%d", &choice);
-        getchar();
-
-        switch (choice) {
             case 1:
-                add_customer();
-                break;
-            case 2:
-                delete_customer();
-                break;
-            case 3:
-                list_customers();
-                break;
-            case 4:
-                exit(0);
-            default:
-                printf("Invalid input!\n");
-        }
-    } while (choice != 4);
+                do 
+                {
+                    system("cls");
+                    printf("\tCustomer Management\n\n");
+                    printf("1. Add a Customer\n");
+                    printf("2. Delete a Customer\n");
+                    printf("3. List of Customers\n");
+                    printf("4. Back to Customer Menu\n");
+                    printf("Enter Number: ");
+                    scanf("%d", &choice);
+                    getchar();
 
-
-     return 0;
-     system("pause"); break;
+                    switch (choice) 
+                    {
+                        case 1:
+                            add_customer();
+                            break;
+                        case 2:
+                            delete_customer();
+                            break;
+                        case 3:
+                            list_customers();
+                            break;
+                        case 4:
+                            customer_menu();
+                            break;
+                        default:
+                            printf("Invalid input!\n");system("pause");
+                    }
+                } while (choice != 4);
+            return;    
+            break;
 
             case 2:
                 printf("\t\t2\n"); system("pause");

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <windows.h>
 
 int menus(int menu);
 void item_menu();
@@ -7,7 +8,6 @@ void customer_menu();
 void sales_menu();
 void receiving_items_menu();
 void reports_and_alerts_menu();
-
 
 int main()
 {
@@ -238,4 +238,12 @@ void reports_and_alerts_menu()
             default:printf("\nSelect 1-4 ONLY!\n"); system("pause");
         }
     }
+}
+
+void gotoxy(int x,int y)
+{
+    COORD coordinate = {0,0};
+    coordinate.X=x;
+    coordinate.Y=y;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),coordinate);
 }

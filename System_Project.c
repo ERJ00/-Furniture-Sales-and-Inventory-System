@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <windows.h>
 
 int menus(int menu);
 void item_menu();
@@ -7,6 +8,7 @@ void customer_menu();
 void sales_menu();
 void receiving_items_menu();
 void reports_and_alerts_menu();
+void gotoxy(int x, int y);
 
 
 int main()
@@ -142,214 +144,116 @@ void item_menu()
 
 void product_category()
 {
-    int op,ch;
+    int prod_id,quantity;
 
     system("cls");
-    printf("\tFurniture-Sales-and-Inventory-System\n\n");
-    printf("\t\tPRODUCT CATEGORY\n\n");
-    printf("\t1.) Bedroom Category\n");
-    printf("\t2.) Living room Category\n");
-    printf("\t3.) Dining room Category\n");
-    printf("\t4.) Exit\n");
-    printf("\tSelect:");
-    scanf("%d",&op);
-    while (1)
-    {
-        switch (op)
-        {
-            while(1){
-            case 1:
-                system("cls");
-                printf("\t\t\n");
-                printf("\t\tBEDROOM FURNITURES\n\n\n");
-                printf("\t1.) Cabinets\n");
-                printf("\t2.) Study Table\n");
-                printf("\t3.) Bed Frame\n");
-                printf("\t4.) Vanity Mirror\n");
-                printf("\t5.) Return to selection\n");
-                printf("\tSelect: ");
-                scanf("%d",&ch);
-                system("pause");
+    gotoxy(35,2);printf("Furniture-Sales-and-Inventory-System");
+    gotoxy(44,3);printf("PRODUCT CATEGORY");
 
-                switch(ch)
-                {
-                    case 1:
-                        system("cls");
-                        printf("\t\t\n");
-                        printf("\tSelected Cabinet\n");
-                        printf("\tInput Quantity: ");
-                        printf("\n");
-                        system("pause");
-                        break;
-                    case 2:
-                        system("cls");
-                        printf("\t\t\n");
-                        printf("\tSelected Study Table\n");
-                        printf("\tInput Quantity: ");
-                        printf("\n");
-                        system("pause");
-                        break;
-                    case 3:
-                        system("cls");
-                        printf("\t\t\n");
-                        printf("\tSelected Bed Frame\n");
-                        printf("\tInput Quantity: ");
-                        printf("\n");
-                        system("pause");
-                        break;
-                    case 4:
-                        system("cls");
-                        printf("\t\t\n");
-                        printf("\tSelected Vanity Mirror\n");
-                        printf("\tInput Quantity: ");
-                        printf("\n");
-                        system("pause");
-                        break;
-                    case 5:
-                        return;
-                        break;
-                    default:
-                        system("cls");
-                        printf("\t\t\n");
-                        printf("\tInvalid Input\n");
-                        printf("\n");
-                        system("pause");
-                        break;
-                }
-            }
-            break;
-            case 2:
-                while(1){
+    //BEDROOM CATEGORY
+    gotoxy(2,5);printf("Bedroom Category");
+    gotoxy(8,6);printf("ID");
+    gotoxy(24,6);printf("PRODUCT NAME");
+    gotoxy(48,6);printf("PRICE");
+    gotoxy(66,6);printf("BRAND");
+    gotoxy(88,6);printf("DESCRIPTION");
 
-                system("cls");
-                printf("\t\t\n");
-                printf("\t\tLIVING ROOM FURNITURES\n\n\n");
-                printf("\t1.) Sofa\n");
-                printf("\t2.) Tv Stand\n");
-                printf("\t3.) Table\n");
-                printf("\t4.) Bookshelf\n");
-                printf("\t5.) Return to selection\n");
-                printf("\tSelect: ");
-                scanf("%d",&ch);
-                system("pause");
+    gotoxy(8,7);printf("10001");
+    gotoxy(8,8);printf("10002");
+    gotoxy(8,9);printf("10003");
+    gotoxy(8,10);printf("10004");
 
-                switch(ch)
-                {
-                    case 1:
-                        system("cls");
-                        printf("\t\t\n");
-                        printf("\tSelected Sofa\n");
-                        printf("\tInput Quantity: ");
-                        printf("\n");
-                        system("pause");
-                        break;
-                    case 2:
-                        system("cls");
-                        printf("\t\t\n");
-                        printf("\tSelected Tv Stand\n");
-                        printf("\tInput Quantity: ");
-                        printf("\n");
-                        system("pause");
-                        break;
-                    case 3:
-                        system("cls");
-                        printf("\t\t\n");
-                        printf("\tSelected Table\n");
-                        printf("\tInput Quantity: ");
-                        printf("\n");
-                        system("pause");
-                        break;
-                    case 4:
-                        system("cls");
-                        printf("\t\t\n");
-                        printf("\tSelected Bookshelf\n");
-                        printf("\tInput Quantity: ");
-                        printf("\n");
-                        system("pause");
-                        break;
-                    case 5:
-                        return;
-                        break;
-                    default:
-                        system("cls");
-                        printf("\t\t\n");
-                        printf("\tInvalid Input\n");
-                        printf("\n");
-                        system("pause");
-                        break;
-                }
-            }
-            break;
-            case 3:
-                while(1){
+    gotoxy(24,7);printf("Cabinets");
+    gotoxy(24,8);printf("Study Table");
+    gotoxy(24,9);printf("Bed Frame");
+    gotoxy(24,10);printf("Vanity Mirror");
 
-                system("cls");
-                printf("\t\t\n");
-                printf("\t\tDINING ROOM FURNITURES\n\n\n");
-                printf("\t1.) Dining Table\n");
-                printf("\t2.) Bar Carts\n");
-                printf("\t3.) Pantry Cabinets\n");
-                printf("\t4.) Bar Stools\n");
-                printf("\t5.) Return to selection\n");
-                printf("\tSelect: ");
-                scanf("%d",&ch);
-                system("pause");
+    gotoxy(47,7);printf("P 1500");
+    gotoxy(47,8);printf("P 1500");
+    gotoxy(47,9);printf("P 1500");
+    gotoxy(47,10);printf("P 1500");
 
-                switch(ch)
-                {
-                    case 1:
-                        system("cls");
-                        printf("\t\t\n");
-                        printf("\tSelected Cabinet\n");
-                        printf("\tInput Quantity: ");
-                        printf("\n");
-                        system("pause");
-                        break;
-                    case 2:
-                        system("cls");
-                        printf("\t\t\n");
-                        printf("\tSelected Study Table\n");
-                        printf("\tInput Quantity: ");
-                        printf("\n");
-                        system("pause");
-                        break;
-                    case 3:
-                        system("cls");
-                        printf("\t\t\n");
-                        printf("\tSelected Bed Frame\n");
-                        printf("\tInput Quantity: ");
-                        printf("\n");
-                        system("pause");
-                        break;
-                    case 4:
-                        system("cls");
-                        printf("\t\t\n");
-                        printf("\tSelected Vanity Mirror\n");
-                        printf("\tInput Quantity: ");
-                        printf("\n");
-                        system("pause");
-                        break;
-                    default:
-                        system("cls");
-                        printf("\t\t\n");
-                        printf("\tInvalid Input\n");
-                        printf("\n");
-                        system("pause");
-                        return;
-                        break;
-                }
-            }
-            break;
-            case 4:
-                return;
-                break;
-            default:
-                printf("\t\n1-4 ONLY\n");
-                system("pause");
-                return;
-                break;
-        }
-    }
+    gotoxy(65,7);printf("Brand X");
+    gotoxy(65,8);printf("Brand X");
+    gotoxy(65,9);printf("Brand X");
+    gotoxy(65,10);printf("Brand X");
+
+    gotoxy(88,7);printf("asdasdasd");
+    gotoxy(88,8);printf("asdasdasd");
+    gotoxy(88,9);printf("asdasdasd");
+    gotoxy(88,10);printf("asdasdasd");
+
+    //LIVING ROOM CATEGORY
+    gotoxy(2,12);printf("Living room Category");
+    gotoxy(8,13);printf("ID");
+    gotoxy(24,13);printf("PRODUCT NAME");
+    gotoxy(48,13);printf("PRICE");
+    gotoxy(66,13);printf("BRAND");
+    gotoxy(88,13);printf("DESCRIPTION");
+
+    gotoxy(8,14);printf("10005");
+    gotoxy(8,15);printf("10006");
+    gotoxy(8,16);printf("10007");
+    gotoxy(8,17);printf("10008");
+
+    gotoxy(24,14);printf("Sofa");
+    gotoxy(24,15);printf("TV Stand");
+    gotoxy(24,16);printf("Table");
+    gotoxy(24,17);printf("Bookshelf");
+
+    gotoxy(47,14);printf("P 1500");
+    gotoxy(47,15);printf("P 1500");
+    gotoxy(47,16);printf("P 1500");
+    gotoxy(47,17);printf("P 1500");
+
+    gotoxy(65,14);printf("Brand X");
+    gotoxy(65,15);printf("Brand X");
+    gotoxy(65,16);printf("Brand X");
+    gotoxy(65,17);printf("Brand X");
+
+    gotoxy(88,14);printf("asdasdasd");
+    gotoxy(88,15);printf("asdasdasd");
+    gotoxy(88,16);printf("asdasdasd");
+    gotoxy(88,17);printf("asdasdasd");
+
+    //DINING ROOM
+    gotoxy(2,19);printf("Dining room Category");
+    gotoxy(8,20);printf("ID");
+    gotoxy(24,20);printf("PRODUCT NAME");
+    gotoxy(48,20);printf("PRICE");
+    gotoxy(66,20);printf("BRAND");
+    gotoxy(88,20);printf("DESCRIPTION");
+
+    gotoxy(8,21);printf("10009");
+    gotoxy(8,22);printf("100010");
+    gotoxy(8,23);printf("100011");
+    gotoxy(8,24);printf("100012");
+
+    gotoxy(24,21);printf("Dining Table");
+    gotoxy(24,22);printf("Bar Carts");
+    gotoxy(24,23);printf("Pantry Cabinets");
+    gotoxy(24,24);printf("Bar Stools");
+
+    gotoxy(47,21);printf("P 1500");
+    gotoxy(47,22);printf("P 1500");
+    gotoxy(47,23);printf("P 1500");
+    gotoxy(47,24);printf("P 1500");
+
+    gotoxy(65,21);printf("Brand X");
+    gotoxy(65,22);printf("Brand X");
+    gotoxy(65,23);printf("Brand X");
+    gotoxy(65,24);printf("Brand X");
+
+    gotoxy(88,21);printf("asdasdasd");
+    gotoxy(88,22);printf("asdasdasd");
+    gotoxy(88,23);printf("asdasdasd");
+    gotoxy(88,24);printf("asdasdasd");
+
+    gotoxy(2,26);printf("Input Product ID: ");
+    scanf("%d",&prod_id);
+    gotoxy(2,27);printf("Input Quantity: ");
+    scanf("%d",&quantity);
+    gotoxy(2,29);system("pause");
 }
 
 void customer_menu()
@@ -450,4 +354,12 @@ void reports_and_alerts_menu()
             default:printf("\nSelect 1-4 ONLY!\n"); system("pause");
         }
     }
+}
+
+void gotoxy(int x,int y)
+{
+    COORD coordinate = {0,0};
+    coordinate.X=x;
+    coordinate.Y=y;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),coordinate);
 }

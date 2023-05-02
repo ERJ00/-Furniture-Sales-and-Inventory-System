@@ -33,7 +33,6 @@ int main()
     init();
     retrieve_products();
     product_category();
-    system("\npause");
     while (1)
         {
         switch (menus(1))
@@ -67,28 +66,6 @@ int is_full()
     }
 }
 
-void add_item(DATAs data)
-{
-    if (is_full() == 1)
-    {
-        system("cls");
-        printf("\n\n\tTHE STORAGE OF THE IS FULL.\n");
-        system("pause");
-    }
-    else
-    {
-        marker++;
-        if (check_product_name(data.product_name) == 1)
-        {
-            marker--;
-        }
-        else
-        {
-            bedroom[marker] = data;
-        }
-    }
-}
-
 int check_product_name(char name[])
 {
     for (int i = 0; i <= marker; i++)
@@ -100,6 +77,22 @@ int check_product_name(char name[])
     }
     return 0;
 }
+
+void add_item(DATAs data)
+{
+    if (is_full() == 1)
+    {
+        system("cls");
+        printf("\n\n\tTHE STORAGE OF THE IS FULL.\n");
+        system("pause");
+    }
+    else
+    {
+        marker++;
+        bedroom[marker] = data;
+    }
+}
+
 
 int menus(int menu)
 {
@@ -230,7 +223,7 @@ void product_category()
     gotoxy(66,7);printf("BRAND");
     gotoxy(88,7);printf("DESCRIPTION");
 
-    for (int i=0; i<MAX; i++)
+    for (int i=0; i<marker; i++)
     {
         gotoxy(8,8+i); printf("%d",bedroom[i].ID);
         gotoxy(24,8+i); printf("%s",bedroom[i].product_name);
@@ -238,32 +231,9 @@ void product_category()
         gotoxy(66,8+i); printf("%s",bedroom[i].brand);
         gotoxy(88,8+i); printf("%s",bedroom[i].description);
     }
-    
 
-    // gotoxy(8,7);printf("10001");
-    // gotoxy(8,8);printf("10002");
-    // gotoxy(8,9);printf("10003");
-    // gotoxy(8,10);printf("10004");
-
-    // gotoxy(24,7);printf("Cabinets");
-    // gotoxy(24,8);printf("Study Table");
-    // gotoxy(24,9);printf("Bed Frame");
-    // gotoxy(24,10);printf("Vanity Mirror");
-
-    // gotoxy(47,7);printf("P 1500");
-    // gotoxy(47,8);printf("P 1500");
-    // gotoxy(47,9);printf("P 1500");
-    // gotoxy(47,10);printf("P 1500");
-
-    // gotoxy(65,7);printf("Brand X");
-    // gotoxy(65,8);printf("Brand X");
-    // gotoxy(65,9);printf("Brand X");
-    // gotoxy(65,10);printf("Brand X");
-
-    // gotoxy(88,7);printf("asdasdasd");
-    // gotoxy(88,8);printf("asdasdasd");
-    // gotoxy(88,9);printf("asdasdasd");
-    // gotoxy(88,10);printf("asdasdasd");
+    printf("\n");
+    system("pause");
 
     // //LIVING ROOM CATEGORY
     // gotoxy(2,12);printf("Living room Category");
@@ -450,23 +420,25 @@ void retrieve_products()
 {
     FILE *fp;
     DATAs temp;
-    fp = fopen("Bedroom.txt","r");
-    if (fp==NULL){
-        printf("File not found!.\n");
-        system("pause");
-        exit(0);
-    }
-    else
+    fp = fopen("Bedroom.txt","r+");
+    if (fp)
     {
         while (!feof(fp))
         {
-            fscanf(fp," %d", &temp.ID);
+            fscanf(fp," %d\n", &temp.ID);
             fscanf(fp," %[^\n]s\n", temp.product_name);
-            fscanf(fp," %d", &temp.price);
+            fscanf(fp," %d\n", &temp.price);
             fscanf(fp," %[^\n]s\n",temp.brand);
             fscanf(fp," %[^\n]s\n",temp.description);
             add_item(temp);
         }
+        system("pause");
         fclose(fp);
+    }
+    else
+    {
+        system("cls");
+        printf("File not found!.\n");
+        system("pause");
     }
 }

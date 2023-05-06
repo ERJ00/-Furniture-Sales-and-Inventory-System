@@ -3,7 +3,7 @@ Bed
 1500
 BRAND B
 water Bed
-0
+1
 BEDROOM
 Bed Inc.
 2023-05-05
@@ -34,6 +34,33 @@ Cotton
 BEDROOM
 Pillow World
 2023-05-05
+3149
+Bed
+1500
+B
+water bed
+5
+BEDROOM
+Aldrin Co.
+2023-05-06
+9796
+Bed
+1500
+B
+Water Bed
+0
+BEDROOM
+Aldrin Co.
+2023-05-06
+4011
+Bed
+1500
+BRAND B
+water bed
+0
+BEDROOM
+Aldrin Co.
+2023-05-06
 1603
 Table
 2000
@@ -61,6 +88,15 @@ Red Carpet
 LIVING ROOM
 Carpet Inc.
 2023-05-05
+5497
+Chairs
+2500
+Brand A
+Narra Wood
+10
+LIVING ROOM
+Aldrin Co.
+2023-05-06
 8347
 Dining Table
 6500

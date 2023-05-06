@@ -350,8 +350,6 @@ void inventory()
     y_axis = 8;
     for (int i=0; i<= bedroom_marker; i++)
     {
-        if (item.bedroom[i].quantity == 0)
-        {
             gotoxy(8,y_axis); printf("%d",item.bedroom[i].ID);
             gotoxy(24,y_axis); printf("%s",item.bedroom[i].product_name);
             gotoxy(48,y_axis); printf("%d",item.bedroom[i].price);
@@ -359,13 +357,10 @@ void inventory()
             gotoxy(88,y_axis); printf("%d",item.bedroom[i].quantity);
             gotoxy(108,y_axis); printf("%s",item.bedroom[i].category);
             y_axis++;
-        }
     }
 
     for (int i=0; i<= living_room_marker; i++)
     {
-        if (item.living_room[i].quantity == 0)
-        {
             gotoxy(8,y_axis); printf("%d",item.living_room[i].ID);
             gotoxy(24,y_axis); printf("%s",item.living_room[i].product_name);
             gotoxy(48,y_axis); printf("%d",item.living_room[i].price);
@@ -373,7 +368,6 @@ void inventory()
             gotoxy(88,y_axis); printf("%d",item.living_room[i].quantity);
             gotoxy(108,y_axis); printf("%s",item.living_room[i].category);
             y_axis++;
-        }
     }
     for (int i=0; i<= dining_room_marker; i++)
     {

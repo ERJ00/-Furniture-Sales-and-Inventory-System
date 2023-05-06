@@ -407,41 +407,44 @@ void received_history()
     gotoxy(95,6);printf("DATE");
     gotoxy(110,6);printf("SUPPLIER");
 
-    y_axis = 8;
+    y_axis = 7;
     for (int i=0; i<= bedroom_marker; i++)
     {
-        gotoxy(5,y_axis+i); printf("%d",item.bedroom[i].ID);
-        gotoxy(15,y_axis+i); printf("%s",item.bedroom[i].product_name);
-        gotoxy(35,y_axis+i); printf("%d",item.bedroom[i].price);
-        gotoxy(50,y_axis+i); printf("%s",item.bedroom[i].brand);
-        gotoxy(70,y_axis+i); printf("%d",item.bedroom[i].quantity);
-        gotoxy(80,y_axis+i); printf("%s",item.bedroom[i].category);
-        gotoxy(95,y_axis+i); printf("%s",item.bedroom[i].date);
-        gotoxy(110,y_axis+i); printf("%s",item.bedroom[i].supplier);
+        y_axis++;
+        gotoxy(5,y_axis); printf("%d",item.bedroom[i].ID);
+        gotoxy(15,y_axis); printf("%s",item.bedroom[i].product_name);
+        gotoxy(35,y_axis); printf("%d",item.bedroom[i].price);
+        gotoxy(50,y_axis); printf("%s",item.bedroom[i].brand);
+        gotoxy(70,y_axis); printf("%d",item.bedroom[i].quantity);
+        gotoxy(80,y_axis); printf("%s",item.bedroom[i].category);
+        gotoxy(95,y_axis); printf("%s",item.bedroom[i].date);
+        gotoxy(110,y_axis); printf("%s",item.bedroom[i].supplier);
     }
-    y_axis+=3;
+    y_axis++;
     for (int i=0; i<= living_room_marker; i++)
     {
-        gotoxy(5,y_axis+i); printf("%d",item.living_room[i].ID);
-        gotoxy(15,y_axis+i); printf("%s",item.living_room[i].product_name);
-        gotoxy(35,y_axis+i); printf("%d",item.living_room[i].price);
-        gotoxy(50,y_axis+i); printf("%s",item.living_room[i].brand);
-        gotoxy(70,y_axis+i); printf("%d",item.living_room[i].quantity);
-        gotoxy(80,y_axis+i); printf("%s",item.living_room[i].category);
-        gotoxy(95,y_axis+i); printf("%s",item.living_room[i].date);
-        gotoxy(110,y_axis+i); printf("%s",item.living_room[i].supplier);
+        y_axis++;
+        gotoxy(5,y_axis); printf("%d",item.living_room[i].ID);
+        gotoxy(15,y_axis); printf("%s",item.living_room[i].product_name);
+        gotoxy(35,y_axis); printf("%d",item.living_room[i].price);
+        gotoxy(50,y_axis); printf("%s",item.living_room[i].brand);
+        gotoxy(70,y_axis); printf("%d",item.living_room[i].quantity);
+        gotoxy(80,y_axis); printf("%s",item.living_room[i].category);
+        gotoxy(95,y_axis); printf("%s",item.living_room[i].date);
+        gotoxy(110,y_axis); printf("%s",item.living_room[i].supplier);
     }
-    y_axis+=3;
+    y_axis++;
     for (int i=0; i<= dining_room_marker; i++)
     {
-        gotoxy(5,y_axis+i); printf("%d",item.dining_room[i].ID);
-        gotoxy(15,y_axis+i); printf("%s",item.dining_room[i].product_name);
-        gotoxy(35,y_axis+i); printf("%d",item.dining_room[i].price);
-        gotoxy(50,y_axis+i); printf("%s",item.dining_room[i].brand);
-        gotoxy(70,y_axis+i); printf("%d",item.dining_room[i].quantity);
-        gotoxy(80,y_axis+i); printf("%s",item.dining_room[i].category);
-        gotoxy(95,y_axis+i); printf("%s",item.dining_room[i].date);
-        gotoxy(110,y_axis+i); printf("%s",item.dining_room[i].supplier);
+        y_axis++;
+        gotoxy(5,y_axis); printf("%d",item.dining_room[i].ID);
+        gotoxy(15,y_axis); printf("%s",item.dining_room[i].product_name);
+        gotoxy(35,y_axis); printf("%d",item.dining_room[i].price);
+        gotoxy(50,y_axis); printf("%s",item.dining_room[i].brand);
+        gotoxy(70,y_axis); printf("%d",item.dining_room[i].quantity);
+        gotoxy(80,y_axis); printf("%s",item.dining_room[i].category);
+        gotoxy(95,y_axis); printf("%s",item.dining_room[i].date);
+        gotoxy(110,y_axis); printf("%s",item.dining_room[i].supplier);
     }
     gotoxy(50,y_axis+3);system("pause");
 

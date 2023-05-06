@@ -313,13 +313,8 @@ void product_category()
             gotoxy(44,6);printf("Product Category: Dining Room");
         }
         do{
-<<<<<<< HEAD
-        data.ID = rand()%9999+1111;
-        } while (check_product_ID(data.ID) == 1);
-=======
         temp.ID = rand()%9999+1111;
         } while (check_product_ID(temp.ID, selected) == 1);
->>>>>>> emman
 
         gotoxy(30,7);printf("Product ID: %d", data.ID);
         gotoxy(30,8);printf("Product Name: ");
@@ -333,14 +328,6 @@ void product_category()
         gotoxy(60,10);scanf(" %d", &data.price);
         fflush(stdin);
         gotoxy(30,11);printf("Product Description: ");
-<<<<<<< HEAD
-        fflush(stdin);
-        gotoxy(60,11);scanf(" %[^\n]s", data.description);
-        add_item(data, selected);
-        save(selected);
-        gotoxy(30,13);printf("Added Product Successfully!");
-        gotoxy(30,15);system("pause");
-=======
         gotoxy(60,11);scanf(" %[^\n]s", temp.description);
         gotoxy(30,12);printf("Product Quantity: ");
         gotoxy(60,12);scanf(" %d", &temp.quantity);
@@ -352,7 +339,6 @@ void product_category()
         save();
         gotoxy(30,16);printf("Added Product Successfully!");
         gotoxy(30,17);system("pause");
->>>>>>> emman
     }
     else
     {
@@ -581,25 +567,6 @@ void retrieve_product()
 
 void save()
 {
-<<<<<<< HEAD
-    FILE *fptr;
-    char filename[50];
-
-    if (category == 1)
-    {
-        strcpy(filename, "Bedroom.txt");
-    }
-    else if (category == 2)
-    {
-        strcpy(filename, "Living_room.txt");
-    }
-    else if (category == 3)
-    {
-        strcpy(filename, "Dining_room.txt");
-    }
-
-    fptr = fopen(filename, "w");
-=======
     FILE *fp;
     char filename[] ="Product_data.txt";
     fp = fopen(filename,"w");
@@ -608,14 +575,9 @@ void save()
         printf("File error.\n");
         system("pause");
     }
->>>>>>> emman
 
     if (fptr == NULL)
     {
-<<<<<<< HEAD
-        printf("Error opening file!");
-        exit(1);
-=======
         for(int i=0; i<=bedroom_marker; i++)
         {
             fprintf(fp,"%d\n%s\n%d\n%s\n%s\n%d\n%s\n%s\n%s\n", item.bedroom[i].ID,  item.bedroom[i].product_name,  item.bedroom[i].price,  item.bedroom[i].brand,  item.bedroom[i].description, item.bedroom[i].quantity, item.bedroom[i].category, item.bedroom[i].supplier, item.bedroom[i].date);
@@ -636,7 +598,6 @@ void save()
             }
         }
         fclose(fp);
->>>>>>> emman
     }
 
     // Check for duplicate product IDs before saving the data

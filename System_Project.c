@@ -6,12 +6,16 @@
 #include "Menus.h"
 
 #define MAX 500
-int bedroom_marker,living_room_marker, dining_room_marker;
+
+int bedroom_marker,living_room_marker, dining_room_marker, customer_marker;
+
+time_t current_time;
+struct tm * time_info;
 
 typedef struct PRODUCTS
 {
-    int ID, price;
-    char product_name[50], brand[50], description[1000];
+    int ID, price, quantity;
+    char product_name[50], brand[50], description[1000], category[50], supplier[50], date[11];
 }product_data;
 
 typedef struct CATEGORIES
@@ -22,40 +26,42 @@ typedef struct CATEGORIES
 }category_data;
 category_data item;
 
-void item_menu();
-void customer_menu();
-void sales_menu();
-void receiving_items_menu();
-void reports_and_alerts_menu();
-void gotoxy(int x, int y);
+typedef struct CUSTOMER
+{
+    char name[50], address[100], contact_number[20], email[50];
+}customer_data;
+customer_data customer[MAX];
 
 void product_category();
+void inventory();
 void product_encoding_form();
+void received_history();
+void gotoxy(int x, int y);
+
+
 void init();
 void add_product();
-void retrieve_products(char filename[50], int category);
-void save(int category);
+void retrieve_product();
+void save();
 void add_item(product_data data, int category);
 int is_full(int category);
-int check_product_ID(int ID);
+int check_product_ID(int ID, int category);
+int menu();
 
 int main()
 {
     init();
-    retrieve_products("Bedroom.txt", 1);
-    retrieve_products("Living_room.txt", 2);
-    retrieve_products("Dining_room.txt", 3);
+    retrieve_product();
     while (1)
         {
-        switch (menus(1))
+        switch (menu())
             {
-            case 1:item_menu(); break;
-            case 2:customer_menu(); break;
-            case 3:sales_menu(); break;
-            case 4:receiving_items_menu(); break;
-            case 5:reports_and_alerts_menu(); break;
-            case 6:exit(0);
-            default:printf("\nSelect 1-6 ONLY!\n"); system("pause");
+            case 1:product_category(); break;
+            case 2:inventory(); break;
+            case 3:product_encoding_form(); break;
+            case 4:received_history(); break;
+            case 5:exit(0);
+            default:printf("\nSelect 1-5 ONLY!\n"); system("pause");
             }
         }
 }
@@ -66,6 +72,25 @@ void init()
     living_room_marker = -1;
     dining_room_marker = -1;
     srand(time(NULL));
+    time(&current_time);
+    time_info = localtime(&current_time);
+
+}
+
+int menu()
+{
+    int op;
+    system("cls");
+    printf("\tFurniture-Sales-and-Inventory-System\n\n");
+    printf("\tMAIN MENU\n\n");
+    printf("1.) Product  Category\n");
+    printf("2.) Product Inventory\n");
+    printf("3.) Received Product / Product Encoding Form\n");
+    printf("4.) Received History\n");
+    printf("5.) Exit\n");
+    printf("Select: ");
+    scanf("%d",&op);
+    return op;
 }
 
 int is_full(int category)
@@ -105,9 +130,9 @@ int is_full(int category)
     }
 }
 
-int check_product_ID(int ID)
+int check_product_ID(int ID, int category)
 {
-    if (ID == 1)
+    if (category == 1)
     {
         for (int i=0; i <= bedroom_marker; i++)
         {
@@ -121,7 +146,7 @@ int check_product_ID(int ID)
             }
         }
     }
-    else if (ID == 2)
+    else if (category == 2)
     {
         for (int i=0; i <= living_room_marker; i++)
         {
@@ -135,7 +160,7 @@ int check_product_ID(int ID)
             }
         }
     }
-    else if (ID == 3)
+    else if (category == 3)
     {
         for (int i=0; i<=dining_room_marker; i++)
         {
@@ -161,43 +186,42 @@ void add_item(product_data data, int category)
     }
     else
     {
+
         if (category == 1)
         {
-            bedroom_marker++;
-            item.bedroom[bedroom_marker] = data;
+            if (check_product_ID(data.ID, category) == 1)
+            {
+                return;
+            }
+            else
+            {
+                bedroom_marker++;
+                item.bedroom[bedroom_marker] = data;
+            }
         }
         else if (category == 2)
         {
-            living_room_marker++;
-            item.living_room[living_room_marker] = data;
+            if (check_product_ID(data.ID, category) == 1)
+            {
+                return;
+            }
+            else
+            {
+                living_room_marker++;
+                item.living_room[living_room_marker] = data;
+            }
         }
         else if (category == 3)
         {
-            dining_room_marker++;
-            item.dining_room[dining_room_marker] = data;
-        }
-    }
-}
-
-void item_menu()
-{
-    while (1)
-    {
-        switch (menus(2))
-        {
-            case 1:
-                product_category();
-            break;
-
-            case 2:
-                product_encoding_form();
-            break;
-
-            case 3:
+            if (check_product_ID(data.ID, category) == 1)
+            {
                 return;
-            break;
-
-            default:printf("\nSelect 1-3 ONLY!\n"); system("pause");
+            }
+            else
+            {
+                dining_room_marker++;
+                item.dining_room[dining_room_marker] = data;
+            }
         }
     }
 }
@@ -275,19 +299,27 @@ void product_category()
 
         if (selected == 1)
         {
+            strcpy(temp.category, "BEDROOM");
             gotoxy(44,6);printf("Product Category: Bedroom");
         }
         else if (selected == 2)
         {
+            strcpy(temp.category, "LIVING ROOM");
             gotoxy(44,6);printf("Product Category: Living Room");
         }
         else if (selected == 3)
         {
+            strcpy(temp.category, "DINING ROOM");
             gotoxy(44,6);printf("Product Category: Dining Room");
         }
         do{
+<<<<<<< HEAD
         data.ID = rand()%9999+1111;
         } while (check_product_ID(data.ID) == 1);
+=======
+        temp.ID = rand()%9999+1111;
+        } while (check_product_ID(temp.ID, selected) == 1);
+>>>>>>> emman
 
         gotoxy(30,7);printf("Product ID: %d", data.ID);
         gotoxy(30,8);printf("Product Name: ");
@@ -301,12 +333,26 @@ void product_category()
         gotoxy(60,10);scanf(" %d", &data.price);
         fflush(stdin);
         gotoxy(30,11);printf("Product Description: ");
+<<<<<<< HEAD
         fflush(stdin);
         gotoxy(60,11);scanf(" %[^\n]s", data.description);
         add_item(data, selected);
         save(selected);
         gotoxy(30,13);printf("Added Product Successfully!");
         gotoxy(30,15);system("pause");
+=======
+        gotoxy(60,11);scanf(" %[^\n]s", temp.description);
+        gotoxy(30,12);printf("Product Quantity: ");
+        gotoxy(60,12);scanf(" %d", &temp.quantity);
+        gotoxy(30,13);printf("Supplier Name: ");
+        gotoxy(60,13);scanf(" %[^\n]s", &temp.supplier);
+        strftime(temp.date, sizeof(temp.date), "%Y-%m-%d", time_info);
+        gotoxy(30,14);printf("Received Date: %s", temp.date);
+        add_item(temp, selected);
+        save();
+        gotoxy(30,16);printf("Added Product Successfully!");
+        gotoxy(30,17);system("pause");
+>>>>>>> emman
     }
     else
     {
@@ -365,104 +411,118 @@ void product_encoding_form()
     gotoxy(30,16);system("pause");
 }
 
-void customer_menu()
+void inventory()
 {
-    while (1)
+    int y_axis;
+    system("cls");
+    gotoxy(35,2);printf("Furniture-Sales-and-Inventory-System");
+    gotoxy(44,4);printf("INVENTORY PRODUCT");
+
+    gotoxy(8,6);printf("ID");
+    gotoxy(24,6);printf("PRODUCT NAME");
+    gotoxy(48,6);printf("UNIT PRICE");
+    gotoxy(66,6);printf("BRAND");
+    gotoxy(88,6);printf("Quantity");
+    gotoxy(108,6);printf("Category");
+
+    y_axis = 8;
+    for (int i=0; i<= bedroom_marker; i++)
     {
-        switch (menus(3))
+        if (item.bedroom[i].quantity == 0)
         {
-            case 1:
-                printf("\t\t1\n"); system("pause");
-            break;
-
-            case 2:
-                printf("\t\t2\n"); system("pause");
-            break;
-
-            case 3:
-                printf("\t\t3\n"); system("pause");
-            break;
-
-            case 4:
-                return;
-            break;
-
-            default:printf("\nSelect 1-4 ONLY!\n"); system("pause");
+            gotoxy(8,y_axis); printf("%d",item.bedroom[i].ID);
+            gotoxy(24,y_axis); printf("%s",item.bedroom[i].product_name);
+            gotoxy(48,y_axis); printf("%d",item.bedroom[i].price);
+            gotoxy(66,y_axis); printf("%s",item.bedroom[i].brand);
+            gotoxy(88,y_axis); printf("%d",item.bedroom[i].quantity);
+            gotoxy(108,y_axis); printf("%s",item.bedroom[i].category);
+            y_axis++;
         }
     }
+
+    for (int i=0; i<= living_room_marker; i++)
+    {
+        if (item.living_room[i].quantity == 0)
+        {
+            gotoxy(8,y_axis); printf("%d",item.living_room[i].ID);
+            gotoxy(24,y_axis); printf("%s",item.living_room[i].product_name);
+            gotoxy(48,y_axis); printf("%d",item.living_room[i].price);
+            gotoxy(66,y_axis); printf("%s",item.living_room[i].brand);
+            gotoxy(88,y_axis); printf("%d",item.living_room[i].quantity);
+            gotoxy(108,y_axis); printf("%s",item.living_room[i].category);
+            y_axis++;
+        }
+    }
+    for (int i=0; i<= dining_room_marker; i++)
+    {
+        if (item.dining_room[i].quantity == 0)
+        {
+            gotoxy(8,y_axis); printf("%d",item.dining_room[i].ID);
+            gotoxy(24,y_axis); printf("%s",item.dining_room[i].product_name);
+            gotoxy(48,y_axis); printf("%d",item.dining_room[i].price);
+            gotoxy(66,y_axis); printf("%s",item.dining_room[i].brand);
+            gotoxy(88,y_axis); printf("%d",item.dining_room[i].quantity);
+            gotoxy(108,y_axis+i); printf("%s",item.dining_room[i].category);
+            y_axis++;
+        }
+    }
+    gotoxy(50,y_axis+3);system("pause");
 }
 
-void sales_menu()
+void received_history()
 {
-    while (1)
+    int y_axis;
+    system("cls");
+    gotoxy(35,2);printf("Furniture-Sales-and-Inventory-System");
+    gotoxy(44,4);printf("RECEIVED HISTORY");
+
+    gotoxy(5,6);printf("ID");
+    gotoxy(15,6);printf("PRODUCT NAME");
+    gotoxy(35,6);printf("UNIT PRICE");
+    gotoxy(50,6);printf("BRAND");
+    gotoxy(70,6);printf("QUANTITY");
+    gotoxy(80,6);printf("CATEGORY");
+    gotoxy(95,6);printf("DATE");
+    gotoxy(110,6);printf("SUPPLIER");
+
+    y_axis = 8;
+    for (int i=0; i<= bedroom_marker; i++)
     {
-        switch (menus(4))
-        {
-            case 1:
-                printf("\t\t1\n"); system("pause");
-            break;
-
-            case 2:
-                printf("\t\t2\n"); system("pause");
-            break;
-
-            case 3:
-                return;
-            break;
-
-            default:printf("\nSelect 1-3 ONLY!\n"); system("pause");
-        }
+        gotoxy(5,y_axis+i); printf("%d",item.bedroom[i].ID);
+        gotoxy(15,y_axis+i); printf("%s",item.bedroom[i].product_name);
+        gotoxy(35,y_axis+i); printf("%d",item.bedroom[i].price);
+        gotoxy(50,y_axis+i); printf("%s",item.bedroom[i].brand);
+        gotoxy(70,y_axis+i); printf("%d",item.bedroom[i].quantity);
+        gotoxy(80,y_axis+i); printf("%s",item.bedroom[i].category);
+        gotoxy(95,y_axis+i); printf("%s",item.bedroom[i].date);
+        gotoxy(110,y_axis+i); printf("%s",item.bedroom[i].supplier);
     }
-}
-
-void receiving_items_menu()
-{
-    while (1)
+    y_axis+=3;
+    for (int i=0; i<= living_room_marker; i++)
     {
-        switch (menus(5))
-        {
-            case 1:
-                printf("\t\t1\n"); system("pause");
-            break;
-
-            case 2:
-                printf("\t\t2\n"); system("pause");
-            break;
-
-            case 3:
-                return;
-            break;
-
-            default:printf("\nSelect 1-3 ONLY!\n"); system("pause");
-        }
+        gotoxy(5,y_axis+i); printf("%d",item.living_room[i].ID);
+        gotoxy(15,y_axis+i); printf("%s",item.living_room[i].product_name);
+        gotoxy(35,y_axis+i); printf("%d",item.living_room[i].price);
+        gotoxy(50,y_axis+i); printf("%s",item.living_room[i].brand);
+        gotoxy(70,y_axis+i); printf("%d",item.living_room[i].quantity);
+        gotoxy(80,y_axis+i); printf("%s",item.living_room[i].category);
+        gotoxy(95,y_axis+i); printf("%s",item.living_room[i].date);
+        gotoxy(110,y_axis+i); printf("%s",item.living_room[i].supplier);
     }
-}
-
-void reports_and_alerts_menu()
-{
-    while (1)
+    y_axis+=3;
+    for (int i=0; i<= dining_room_marker; i++)
     {
-        switch (menus(6))
-        {
-            case 1:
-                printf("\t\t1\n"); system("pause");
-            break;
-
-            case 2:
-                printf("\t\t2\n"); system("pause");
-            break;
-
-            case 3:
-                printf("\t\t3\n"); system("pause");
-            break;
-
-            case 4:
-                return;
-            break;
-
-            default:printf("\nSelect 1-4 ONLY!\n"); system("pause");
-        }
+        gotoxy(5,y_axis+i); printf("%d",item.dining_room[i].ID);
+        gotoxy(15,y_axis+i); printf("%s",item.dining_room[i].product_name);
+        gotoxy(35,y_axis+i); printf("%d",item.dining_room[i].price);
+        gotoxy(50,y_axis+i); printf("%s",item.dining_room[i].brand);
+        gotoxy(70,y_axis+i); printf("%d",item.dining_room[i].quantity);
+        gotoxy(80,y_axis+i); printf("%s",item.dining_room[i].category);
+        gotoxy(95,y_axis+i); printf("%s",item.dining_room[i].date);
+        gotoxy(110,y_axis+i); printf("%s",item.dining_room[i].supplier);
     }
+    gotoxy(50,y_axis+3);system("pause");
+
 }
 
 void gotoxy(int x,int y)
@@ -473,7 +533,7 @@ void gotoxy(int x,int y)
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),coordinate);
 }
 
-void retrieve_products(char filename[50], int category)
+void retrieve_product()
 {
     // 1 = bedroom
     // 2 = living room
@@ -481,7 +541,7 @@ void retrieve_products(char filename[50], int category)
 
     FILE *fp;
     product_data temp;
-    fp = fopen(filename,"r");
+    fp = fopen("Product_data.txt","r");
     if (fp)
     {
         while (!feof(fp))
@@ -491,7 +551,23 @@ void retrieve_products(char filename[50], int category)
             fscanf(fp," %d\n", &temp.price);
             fscanf(fp," %[^\n]s\n",temp.brand);
             fscanf(fp," %[^\n]s\n",temp.description);
-            add_item(temp, category);
+            fscanf(fp," %d\n", &temp.quantity);
+            fscanf(fp," %[^\n]s\n",temp.category);
+            fscanf(fp," %[^\n]s\n",temp.supplier);
+            fscanf(fp," %[^\n]s\n",temp.date);
+
+            if (strcmp(temp.category, "BEDROOM") == 0)
+            {
+                add_item(temp, 1);
+            }
+            else if (strcmp(temp.category, "LIVING ROOM") == 0)
+            {
+                add_item(temp, 2);
+            }
+            else if (strcmp(temp.category, "DINING ROOM") == 0)
+            {
+                add_item(temp, 3);
+            }
         }
         fclose(fp);
     }
@@ -503,8 +579,9 @@ void retrieve_products(char filename[50], int category)
     }
 }
 
-void save(int category)
+void save()
 {
+<<<<<<< HEAD
     FILE *fptr;
     char filename[50];
 
@@ -522,11 +599,44 @@ void save(int category)
     }
 
     fptr = fopen(filename, "w");
+=======
+    FILE *fp;
+    char filename[] ="Product_data.txt";
+    fp = fopen(filename,"w");
+    if(fp==NULL)
+    {
+        printf("File error.\n");
+        system("pause");
+    }
+>>>>>>> emman
 
     if (fptr == NULL)
     {
+<<<<<<< HEAD
         printf("Error opening file!");
         exit(1);
+=======
+        for(int i=0; i<=bedroom_marker; i++)
+        {
+            fprintf(fp,"%d\n%s\n%d\n%s\n%s\n%d\n%s\n%s\n%s\n", item.bedroom[i].ID,  item.bedroom[i].product_name,  item.bedroom[i].price,  item.bedroom[i].brand,  item.bedroom[i].description, item.bedroom[i].quantity, item.bedroom[i].category, item.bedroom[i].supplier, item.bedroom[i].date);
+        }
+        for(int i=0; i<=living_room_marker; i++)
+        {
+            fprintf(fp,"%d\n%s\n%d\n%s\n%s\n%d\n%s\n%s\n%s\n", item.living_room[i].ID,  item.living_room[i].product_name,  item.living_room[i].price,  item.living_room[i].brand,  item.living_room[i].description, item.living_room[i].quantity, item.living_room[i].category, item.living_room[i].supplier, item.living_room[i].date);
+        }
+        for(int i=0; i<=dining_room_marker; i++)
+        {
+            if (i == dining_room_marker)
+            {
+                fprintf(fp,"%d\n%s\n%d\n%s\n%s\n%d\n%s\n%s\n%s", item.dining_room[i].ID,  item.dining_room[i].product_name,  item.dining_room[i].price,  item.dining_room[i].brand,  item.dining_room[i].description, item.dining_room[i].quantity, item.dining_room[i].category, item.dining_room[i].supplier, item.dining_room[i].date);
+            }
+            else
+            {
+                fprintf(fp,"%d\n%s\n%d\n%s\n%s\n%d\n%s\n%s\n%s\n", item.dining_room[i].ID,  item.dining_room[i].product_name,  item.dining_room[i].price,  item.dining_room[i].brand,  item.dining_room[i].description, item.dining_room[i].quantity, item.dining_room[i].category, item.dining_room[i].supplier, item.dining_room[i].date);
+            }
+        }
+        fclose(fp);
+>>>>>>> emman
     }
 
     // Check for duplicate product IDs before saving the data

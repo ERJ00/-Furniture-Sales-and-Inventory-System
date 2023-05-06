@@ -1,0 +1,63 @@
+1126
+Bed
+1500
+BRAND B
+water Bed
+0
+BEDROOM
+Bed Inc.
+2023-05-05
+1127
+Bed
+1500
+BRAND B
+water Bed
+0
+BEDROOM
+Bed Inc.
+2023-05-05
+3310
+Pillow
+550
+BRAND P
+Cotton
+2
+BEDROOM
+Pillow World
+2023-05-05
+1603
+Table
+2000
+BRAND T
+Wooden Table
+0
+LIVING ROOM
+HOOD INC.
+2023-05-05
+1604
+Table
+2000
+BRAND T
+Wooden Table
+0
+LIVING ROOM
+HOOD INC.
+2023-05-05
+2604
+Carpet
+8500
+BRAND C
+Red Carpet
+65
+LIVING ROOM
+Carpet Inc.
+2023-05-05
+8347
+Dining Table
+6500
+BRAND D
+For 6 Person
+0
+DINING ROOM
+Furniture Inc.
+2023-05-05

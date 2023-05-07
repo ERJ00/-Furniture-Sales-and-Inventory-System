@@ -7,3 +7,12 @@ water Bed
 BEDROOM
 Bed Inc.
 2023-05-05
+8733
+Table
+1500
+BRAND T
+Wooden Table
+50
+LIVING ROOM
+Hood Inc.
+2023-05-07

@@ -298,11 +298,29 @@ int product_checker(char name[50], char brand[50], int category)
     }
     else if (category == 2)
     {
-
+        for(int i=0; i<=living_room_marker; i++)
+        {
+            strcpy(nm,item.living_room[i].product_name);
+            strcpy(br,item.living_room[i].brand);
+            if((strcmp(strupr(nm), strupr(name)) == 0) && (strcmp(strupr(br), strupr(brand)) == 0))
+            {
+                return i;
+            }
+        }
+        return -1;
     }
     else if (category == 3)
     {
-
+        for(int i=0; i<=dining_room_marker; i++)
+        {
+            strcpy(nm,item.dining_room[i].product_name);
+            strcpy(br,item.dining_room[i].brand);
+            if((strcmp(strupr(nm), strupr(name)) == 0) && (strcmp(strupr(br), strupr(brand)) == 0))
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 }
 

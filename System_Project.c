@@ -82,7 +82,7 @@ int menu()
 {
     int op;
     system("cls");
-    gotoxy(35,2);printf("Furniture-Sales-and-Inventory-System");
+    gotoxy(40,2);printf("Furniture-Inventory-System");
     gotoxy(45,4);printf("MAIN MENU");
     gotoxy(30,7);printf("1.) Product  Category / Available Products");
     gotoxy(30,8);printf("2.) Product Inventory / Out of Stock Products");
@@ -231,7 +231,7 @@ void product_category()
 {
     int y_axis;
     system("cls");
-    gotoxy(35,2);printf("Furniture-Sales-and-Inventory-System");
+    gotoxy(40,2);printf("Furniture-Inventory-System");
     gotoxy(44,3);printf("PRODUCT CATEGORY");
 
     //BEDROOM CATEGORY
@@ -316,7 +316,7 @@ void product_encoding_form()
     if ((selected == 1) || (selected == 2) || (selected == 3))
     {
         system("cls");
-        gotoxy(35,2);printf("Furniture-Sales-and-Inventory-System");
+        gotoxy(40,2);printf("Furniture-Inventory-System");
         gotoxy(44,4);printf("PRODUCT ENCODING FORM");
 
         if (selected == 1)
@@ -407,7 +407,7 @@ void inventory()
 {
     int y_axis;
     system("cls");
-    gotoxy(35,2);printf("Furniture-Sales-and-Inventory-System");
+    gotoxy(40,2);printf("Furniture-Inventory-System");
     gotoxy(44,4);printf("INVENTORY PRODUCT");
 
     gotoxy(8,6);printf("ID");
@@ -465,7 +465,7 @@ void received_history()
 {
     int y_axis;
     system("cls");
-    gotoxy(35,2);printf("Furniture-Sales-and-Inventory-System");
+    gotoxy(40,2);printf("Furniture-Inventory-System");
     gotoxy(44,4);printf("RECEIVED HISTORY");
 
     gotoxy(5,6);printf("ID");

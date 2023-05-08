@@ -26,12 +26,6 @@ typedef struct CATEGORIES
 }category_data;
 category_data item;
 
-typedef struct CUSTOMER
-{
-    char name[50], address[100], contact_number[20], email[50];
-}customer_data;
-customer_data customer[MAX];
-
 void product_category();
 void inventory();
 void product_encoding_form();
@@ -385,7 +379,7 @@ void product_encoding_form()
             if (selected == 1)
             {
                 item.bedroom[index].quantity += temp.quantity;
-                item.bedroom[index].price += temp.price;
+                item.bedroom[index].price = temp.price;
                 strcpy(item.bedroom[index].date, temp.date);
                 strcpy(item.bedroom[index].description, temp.description);
                 strcpy(item.bedroom[index].supplier, temp.supplier);
@@ -393,7 +387,7 @@ void product_encoding_form()
             else if (selected == 2)
             {
                 item.living_room[index].quantity += temp.quantity;
-                item.living_room[index].price += temp.price;
+                item.living_room[index].price = temp.price;
                 strcpy(item.living_room[index].date, temp.date);
                 strcpy(item.living_room[index].description, temp.description);
                 strcpy(item.living_room[index].supplier, temp.supplier);
@@ -401,12 +395,12 @@ void product_encoding_form()
             else if (selected == 3)
             {
                 item.dining_room[index].quantity += temp.quantity;
-                item.dining_room[index].price += temp.price;
+                item.dining_room[index].price = temp.price;
                 strcpy(item.dining_room[index].date, temp.date);
                 strcpy(item.dining_room[index].description, temp.description);
                 strcpy(item.dining_room[index].supplier, temp.supplier);
             }
-
+            save();
             gotoxy(30,16);printf("Update Product Successfully!");
             gotoxy(30,17);system("pause");
         }

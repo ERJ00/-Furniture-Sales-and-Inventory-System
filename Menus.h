@@ -8,7 +8,7 @@ int select_category()
 {
     int selected;
     system("cls");
-    gotoxy(35,2);printf("Furniture-Sales-and-Inventory-System");
+    gotoxy(40,2);printf("Furniture-Inventory-System");
     gotoxy(44,4);printf("PRODUCT ENCODING FORM");
 
     gotoxy(30,6);printf("1.) Bedroom");

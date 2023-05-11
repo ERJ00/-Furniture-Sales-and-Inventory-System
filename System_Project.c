@@ -55,7 +55,8 @@ int main()
             case 2:inventory(); break;
             case 3:product_encoding_form(); break;
             case 4:received_history(); break;
-            case 5:exit(0);
+            case 5:purchase_product();break;
+            case 6:exit(0);
             default:gotoxy(45,20);printf("Select 1-5 ONLY!");gotoxy(45,21);system("pause");
             }
         }
@@ -82,8 +83,9 @@ int menu()
     gotoxy(30,8);printf("2.) Product Inventory / Out of Stock Products");
     gotoxy(30,9);printf("3.) Received Product / Product Encoding Form\n");
     gotoxy(30,10);printf("4.) Received History");
-    gotoxy(30,11);printf("5.) Exit");
-    gotoxy(30,12);printf("Select: ");
+    gotoxy(30,11);printf("5.) Purchase Product");
+    gotoxy(30,12);printf("6.) Exit");
+    gotoxy(30,13);printf("Select: ");
     scanf("%d",&op);
     return op;
 }
@@ -621,3 +623,194 @@ void save()
         fclose(fp);
     }
 }
+
+void purchase_product() {
+
+    int product_choice, quantity, product_found = 0, available_quantity;
+    int price, total;
+    char name [50],customerID[100];
+    int selected,y_axis;
+    product_data temp;
+
+    selected = select_category();
+    y_axis = 9;
+
+    if ((selected == 1) || (selected == 2) || (selected == 3))
+    {
+        system("cls");
+        gotoxy(41,2);printf("Furniture-Inventory-System");
+        gotoxy(44,4);printf("PRODUCT ENCODING FORM");
+
+        if (selected == 1)
+        {
+            strcpy(temp.category, "BEDROOM");
+            gotoxy(40,6);printf("Product Category: Bedroom");
+
+            gotoxy(40,7);printf("Which product would you like to buy?");
+            for (int i = 0; i <= bedroom_marker; i++)
+            {
+                if (item.bedroom[i].quantity > 0)
+                {
+                    gotoxy(40,y_axis);printf("%d. %s - %d Quantity: %d\n", item.bedroom[i].ID, item.bedroom[i].product_name, item.bedroom[i].price, item.bedroom[i].quantity);
+                    y_axis++;
+                }
+                else
+                {
+                    // If quantity is 0, return to main menu
+                    gotoxy(44,20);printf("Product is out of stock, try again later.....");
+                    gotoxy(44,21);system("pause");
+                    return;
+                }
+            }
+        }
+        else if (selected == 2)
+        {
+            strcpy(temp.category, "LIVING ROOM");
+            gotoxy(40,6);printf("Product Category: Living Room");
+
+            gotoxy(40,7);printf("Which product would you like to buy?\n");
+
+            for (int i = 0; i <= living_room_marker; i++)
+            {
+                if (item.living_room[i].quantity > 0)
+                {
+                    gotoxy(40,y_axis);printf("%d. %s - %d Quantity: %d\n", item.living_room[i].ID, item.living_room[i].product_name, item.living_room[i].price, item.living_room[i].quantity);
+                    y_axis++;
+                }
+                else
+                {
+                    // If quantity is 0, return to main menu
+                    gotoxy(44,20);printf("Product is out of stock, try again later.....");
+                    gotoxy(44,21);system("pause");
+                    return;
+                }
+            }
+        }
+        else if (selected == 3)
+        {
+            strcpy(temp.category, "DINING ROOM");
+            gotoxy(40,6);printf("Product Category: Dining Room");
+
+            gotoxy(40,7);printf("Which product would you like to buy?\n");
+            for (int i = 0; i <= dining_room_marker; i++)
+            {
+                if (item.dining_room[i].quantity > 0)
+                {
+                    gotoxy(40,y_axis);printf("%d. %s - %d Quantity: %d\n", item.dining_room[i].ID, item.dining_room[i].product_name, item.dining_room[i].price, item.dining_room[i].quantity);
+                    y_axis++;
+                }
+                else
+                {
+                    // If quantity is 0, return to main menu
+                    gotoxy(44,20);printf("Product is out of stock, try again later.....");
+                    gotoxy(44,21);system("pause");
+                    return;
+                }
+            }
+        }
+    fflush(stdin);
+    gotoxy(44,15);printf("Enter Customer Name: ");
+    scanf("%[^\n]s",customerID);
+    fflush(stdin);
+    gotoxy(44,16);printf("Enter the ID of the product you would like to buy: ");
+    scanf("%d", &product_choice);
+    fflush(stdin);
+
+    // Check if the product exists in the system
+    for (int i = 0; i <= bedroom_marker; i++) {
+        if (item.bedroom[i].ID == product_choice) {
+            product_found = 1;
+            price = item.bedroom[i].price;
+            available_quantity = item.bedroom[i].quantity;
+            strcpy(name,item.bedroom[i].product_name);
+            break;
+        }
+    }
+    for (int i = 0; i <= living_room_marker; i++) {
+        if (item.living_room[i].ID == product_choice) {
+            product_found = 1;
+            price = item.living_room[i].price;
+            available_quantity = item.living_room[i].quantity;
+            strcpy(name,item.living_room[i].product_name);
+            break;
+        }
+    }
+    for (int i = 0; i <= dining_room_marker; i++) {
+        if (item.dining_room[i].ID == product_choice) {
+            product_found = 1;
+            price = item.dining_room[i].price;
+            available_quantity = item.dining_room[i].quantity;
+            strcpy(name,item.dining_room[i].product_name);
+            break;
+        }
+    }
+
+    // If the product is found, get the quantity the user wants to buy
+    if (product_found) {
+        gotoxy(44,17);printf("Enter the quantity you would like to buy: ");
+        scanf("%d", &quantity);
+
+        // Check if the requested quantity is available
+        if (quantity > available_quantity) {
+            gotoxy(44,18);printf("Sorry, there are only %d units of this product available.", available_quantity);
+            gotoxy(44,19);system("pause");
+            return;
+        }
+
+        // Deduct the purchased quantity from the saved quantity
+        for (int i = 0; i <= bedroom_marker; i++) {
+            if (item.bedroom[i].ID == product_choice) {
+                item.bedroom[i].quantity -= quantity;
+                break;
+            }
+        }
+        for (int i = 0; i <= living_room_marker; i++) {
+            if (item.living_room[i].ID == product_choice) {
+                item.living_room[i].quantity -= quantity;
+                break;
+            }
+        }
+        for (int i = 0; i <= dining_room_marker; i++) {
+            if (item.dining_room[i].ID == product_choice) {
+                item.dining_room[i].quantity -= quantity;
+                break;
+            }
+        }
+
+        total = price * quantity;
+
+        // Get the current date and time
+        time_t now = time(NULL);
+        char *date = ctime(&now);
+
+        system("cls");
+        // Display the transaction information
+        gotoxy(47,5);printf("TRANSACTION RECIEPT");
+        gotoxy(44,7);printf("Customer Name: %s",customerID);
+        gotoxy(44,8);printf("Product: %d - %s", product_choice, name);
+        gotoxy(44,9);printf("Quantity: %d", quantity);
+        gotoxy(44,10);printf("Price: %d", price);
+        gotoxy(44,11);printf("Total: %d", total);
+        gotoxy(44,12);printf("Date: %s",date);
+
+        // Record the transaction in a log file or database
+        FILE *fptr;
+        fptr = fopen("transactions.txt", "a");
+        if (fptr == NULL) {
+            printf("Error opening transactions file.");
+            return;
+        }
+        // Write the transaction to the log file
+        fprintf(fptr, "Customer Name: %s Product: %d - %s\tQuantity: %d\tPrice: %d\tTotal: %d\tDate: %s",customerID, product_choice, name, quantity, price, total, date);
+        fclose(fptr);
+        gotoxy(44,20);printf("Transaction recorded successfully.");
+        save();
+    }
+    else {
+        printf("Product not found.");
+    }
+    gotoxy(44,21);system("pause");
+    }
+}
+
+

@@ -1,0 +1,17 @@
+Customer Name: Aldrin Product: 5548 - Bed	Quantity: 3	Price: 1500	Total: 4500	Date: Thu May 11 13:23:49 2023
+Customer Name: Merrell Product: 5548 - Bed	Quantity: 3	Price: 1500	Total: 4500	Date: Thu May 11 13:24:59 2023
+Customer Name: Aldrin Product: 8859 - Table	Quantity: 5	Price: 2500	Total: 12500	Date: Thu May 11 13:25:37 2023
+Customer Name: Emman Product: 8859 - Table	Quantity: 5	Price: 2500	Total: 12500	Date: Thu May 11 13:28:32 2023
+Customer Name: Jalen Product: 8859 - Table	Quantity: 1	Price: 2500	Total: 2500	Date: Thu May 11 13:29:35 2023
+Customer Name: Tejero Product: 1116 - Tabletop	Quantity: 15	Price: 3500	Total: 52500	Date: Thu May 11 13:30:22 2023
+Customer Name: Marielle Product: 5548 - Bed	Quantity: 10	Price: 1500	Total: 15000	Date: Thu May 11 13:35:20 2023
+Customer Name: ken Product: 5548 - Bed	Quantity: 5	Price: 500	Total: 2500	Date: Thu May 11 13:42:20 2023
+Customer Name: men Product: 8859 - Table	Quantity: 5	Price: 2500	Total: 12500	Date: Thu May 11 13:43:38 2023
+Customer Name: ben Product: 8161 - LAPTOP TABLE	Quantity: 5	Price: 1500	Total: 7500	Date: Thu May 11 13:51:43 2023
+Customer Name: mcdo Product: 8698 - JOLLIBEE	Quantity: 5	Price: 3000	Total: 15000	Date: Thu May 11 13:52:38 2023
+Customer Name: ned Product: 8161 - LAPTOP TABLE	Quantity: 3	Price: 1500	Total: 4500	Date: Thu May 11 14:01:39 2023
+Customer Name: canary Product: 8161 - LAPTOP TABLE	Quantity: 2	Price: 1500	Total: 3000	Date: Thu May 11 14:02:29 2023
+Customer Name: hello Product: 1116 - Tabletop	Quantity: 3	Price: 3500	Total: 10500	Date: Thu May 11 14:03:09 2023
+Customer Name: JR Product: 8161 - LAPTOP TABLE	Quantity: 1	Price: 0	Total: 1500	Date: Thu May 11 18:47:56 2023
+Customer Name: JR Product: 8610 - KAINAN	Quantity: 1	Price: 2500	Total: 2500	Date: Thu May 11 19:05:20 2023
+Customer Name: JR 	Product: 1116 - Tabletop 	Quantity: 2 	Price: 3500 	Total: 7000 	Date: Thu May 11 19:12:15 2023

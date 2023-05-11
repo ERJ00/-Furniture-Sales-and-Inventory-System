@@ -12,3 +12,6 @@ Customer Name: mcdo Product: 8698 - JOLLIBEE	Quantity: 5	Price: 3000	Total: 1500
 Customer Name: ned Product: 8161 - LAPTOP TABLE	Quantity: 3	Price: 1500	Total: 4500	Date: Thu May 11 14:01:39 2023
 Customer Name: canary Product: 8161 - LAPTOP TABLE	Quantity: 2	Price: 1500	Total: 3000	Date: Thu May 11 14:02:29 2023
 Customer Name: hello Product: 1116 - Tabletop	Quantity: 3	Price: 3500	Total: 10500	Date: Thu May 11 14:03:09 2023
+Customer Name: JR Product: 8161 - LAPTOP TABLE	Quantity: 1	Price: 0	Total: 1500	Date: Thu May 11 18:47:56 2023
+Customer Name: JR Product: 8610 - KAINAN	Quantity: 1	Price: 2500	Total: 2500	Date: Thu May 11 19:05:20 2023
+Customer Name: JR 	Product: 1116 - Tabletop 	Quantity: 2 	Price: 3500 	Total: 7000 	Date: Thu May 11 19:12:15 2023

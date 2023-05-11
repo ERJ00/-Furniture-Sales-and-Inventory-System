@@ -1,0 +1,2 @@
+
+[ 2023-05-11 ] | Item = asd | Brand = asd | Quantity = 123 | Unit Price = 123 | Supplier = asd

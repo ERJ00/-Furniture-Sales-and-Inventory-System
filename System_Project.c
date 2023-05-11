@@ -7,7 +7,7 @@
 
 #define MAX 500
 
-int bedroom_marker,living_room_marker, dining_room_marker, customer_marker;
+int bedroom_marker,living_room_marker, dining_room_marker, customer_marker, key = 5;
 
 time_t current_time;
 struct tm * time_info;
@@ -42,6 +42,7 @@ int is_full(int category);
 int check_product_ID(int ID, int category);
 int menu();
 int product_checker(char name[50], char brand[50], int category);
+void save_delivered_transaction(product_data data);
 
 int main()
 {
@@ -368,6 +369,7 @@ void product_encoding_form()
         strftime(temp.date, sizeof(temp.date), "%Y-%m-%d", time_info);
         gotoxy(30,14);printf("Received Date: %s", temp.date);
 
+        save_delivered_transaction(temp);
         index = product_checker(temp.product_name, temp.brand, selected);
         if (index == -1)
         {
@@ -406,7 +408,6 @@ void product_encoding_form()
             gotoxy(30,16);printf("Update Product Successfully!");
             gotoxy(30,17);system("pause");
         }
-
 
     }
     else
@@ -477,61 +478,30 @@ void inventory()
 
 void received_history()
 {
-    int y_axis;
+    FILE *fp;
+    char line[256];
+    int y_axis = 6;
     system("cls");
     gotoxy(40,2);printf("Furniture-Inventory-System");
     gotoxy(44,4);printf("RECEIVED HISTORY");
 
-    gotoxy(5,6);printf("ID");
-    gotoxy(15,6);printf("PRODUCT NAME");
-    gotoxy(35,6);printf("UNIT PRICE");
-    gotoxy(50,6);printf("BRAND");
-    gotoxy(70,6);printf("QUANTITY");
-    gotoxy(80,6);printf("CATEGORY");
-    gotoxy(95,6);printf("DATE");
-    gotoxy(110,6);printf("SUPPLIER");
+    fp = fopen("Delivered_Log.txt", "r");
+    if (fp == NULL)
+    {
+        gotoxy(50,y_axis);printf("Failed to open the file.\n");
+        return 1;
+    }
+    else
+    {
+        while (fgets(line, sizeof(line), fp) != NULL)
+        {
+            gotoxy(20,y_axis);printf("%s", line);
+            y_axis++;
+        }
+    }
 
-    y_axis = 7;
-    for (int i=0; i<= bedroom_marker; i++)
-    {
-        y_axis++;
-        gotoxy(5,y_axis); printf("%d",item.bedroom[i].ID);
-        gotoxy(15,y_axis); printf("%s",item.bedroom[i].product_name);
-        gotoxy(35,y_axis); printf("%d",item.bedroom[i].price);
-        gotoxy(50,y_axis); printf("%s",item.bedroom[i].brand);
-        gotoxy(70,y_axis); printf("%d",item.bedroom[i].quantity);
-        gotoxy(80,y_axis); printf("%s",item.bedroom[i].category);
-        gotoxy(95,y_axis); printf("%s",item.bedroom[i].date);
-        gotoxy(110,y_axis); printf("%s",item.bedroom[i].supplier);
-    }
-    y_axis++;
-    for (int i=0; i<= living_room_marker; i++)
-    {
-        y_axis++;
-        gotoxy(5,y_axis); printf("%d",item.living_room[i].ID);
-        gotoxy(15,y_axis); printf("%s",item.living_room[i].product_name);
-        gotoxy(35,y_axis); printf("%d",item.living_room[i].price);
-        gotoxy(50,y_axis); printf("%s",item.living_room[i].brand);
-        gotoxy(70,y_axis); printf("%d",item.living_room[i].quantity);
-        gotoxy(80,y_axis); printf("%s",item.living_room[i].category);
-        gotoxy(95,y_axis); printf("%s",item.living_room[i].date);
-        gotoxy(110,y_axis); printf("%s",item.living_room[i].supplier);
-    }
-    y_axis++;
-    for (int i=0; i<= dining_room_marker; i++)
-    {
-        y_axis++;
-        gotoxy(5,y_axis); printf("%d",item.dining_room[i].ID);
-        gotoxy(15,y_axis); printf("%s",item.dining_room[i].product_name);
-        gotoxy(35,y_axis); printf("%d",item.dining_room[i].price);
-        gotoxy(50,y_axis); printf("%s",item.dining_room[i].brand);
-        gotoxy(70,y_axis); printf("%d",item.dining_room[i].quantity);
-        gotoxy(80,y_axis); printf("%s",item.dining_room[i].category);
-        gotoxy(95,y_axis); printf("%s",item.dining_room[i].date);
-        gotoxy(110,y_axis); printf("%s",item.dining_room[i].supplier);
-    }
+    fclose(fp);
     gotoxy(50,y_axis+3);system("pause");
-
 }
 
 void gotoxy(int x,int y)
@@ -591,8 +561,7 @@ void retrieve_product()
 void save()
 {
     FILE *fp;
-    char filename[] ="Product_data.txt";
-    fp = fopen(filename,"w");
+    fp = fopen("Product_data.txt","w");
     if(fp==NULL)
     {
         printf("File error.\n");
@@ -623,6 +592,7 @@ void save()
         fclose(fp);
     }
 }
+
 
 void purchase_product() {
 
@@ -813,4 +783,19 @@ void purchase_product() {
     }
 }
 
+void save_delivered_transaction(product_data data)
+{
+    FILE *fp;
+    fp = fopen("Delivered_Log.txt","ab");
+    if(fp==NULL)
+    {
+        printf("File error.\n");
+        system("pause");
+    }
 
+    else
+    {
+        fprintf(fp,"\n[ %s ] | Item = %s | Brand = %s | Quantity = %d | Unit Price = %d | Supplier = %s", data.date, data.product_name, data.brand, data.quantity, data.price, data.supplier);
+        fclose(fp);
+    }
+}

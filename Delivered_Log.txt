@@ -9,3 +9,5 @@
 [ 2023-05-12 ] | Item = bed | Brand = brand a | Quantity = 4 | Unit Price = 1500 | Supplier = Aldrin Inc.
 [ 2023-05-12 ] | Item = asd | Brand = asd | Quantity = 123 | Unit Price = 123 | Supplier = asd
 [ 2023-05-12 ] | Item = asd | Brand = asd | Quantity = 123 | Unit Price = 123 | Supplier = asd
+[ 2023-05-12 ] | Item = asd | Brand = asd | Quantity = 123 | Unit Price = 123 | Supplier = asd
+[ 2023-05-12 ] | Item = zxc | Brand = zxc | Quantity = 456 | Unit Price = 456 | Supplier = zxc

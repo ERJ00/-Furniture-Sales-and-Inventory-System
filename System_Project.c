@@ -322,7 +322,7 @@ void product_encoding_form()
         }
         do{
         temp.ID = rand()%9999+1111;
-        } while (check_product_ID(temp.ID, selected) == -1);
+        } while (check_product_ID(temp.ID, selected) != -1);
 
         gotoxy(30,7);printf("Product ID: %d", temp.ID);
         gotoxy(30,8);printf("Product Name: ");

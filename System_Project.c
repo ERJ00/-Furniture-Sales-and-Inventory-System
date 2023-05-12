@@ -594,8 +594,15 @@ void purchase_product() {
     y_axis = 11;
     if (selected == 1)
     {
+        if(bedroom_marker == -1)
+        {
+            system("cls");
+            gotoxy(40,3);printf("No Available Products.");
+            gotoxy(40,5);system("Pause");
+            purchase_product();
+        }
         strcpy(temp.category, "BEDROOM");
-        gotoxy(40,6);printf("Product Category: Bedroom");
+        gotoxy(40,6);printf("Product Category: Bedroom ");
         gotoxy(40,7);printf("Which product would you like to buy?");
         for (int i = 0; i <= bedroom_marker; i++)
         {
@@ -612,6 +619,13 @@ void purchase_product() {
 
     else if (selected == 2)
     {
+        if(living_room_marker == -1)
+        {
+            system("cls");
+            gotoxy(40,3);printf("No Available Products.");
+            gotoxy(40,5);system("Pause");
+            purchase_product();
+        }
         strcpy(temp.category, "LIVING ROOM");
         gotoxy(40,6);printf("Product Category: Living Room");
         gotoxy(40,7);printf("Which product would you like to buy?");
@@ -629,6 +643,13 @@ void purchase_product() {
     }
     else if (selected == 3)
     {
+        if(dining_room_marker == -1)
+        {
+            system("cls");
+            gotoxy(40,3);printf("No Available Products.");
+            gotoxy(40,5);system("Pause");
+            purchase_product();
+        }
         strcpy(temp.category, "DINING ROOM");
         gotoxy(40,6);printf("Product Category: Dining Room");
         gotoxy(40,7);printf("Which product would you like to buy?");

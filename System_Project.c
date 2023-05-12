@@ -179,27 +179,18 @@ void add_item(product_data data, int category)
 
         if (category == 1)
         {
-            if (check_product_ID(data.ID, category) == -1)
-            {
                 bedroom_marker++;
                 item.bedroom[bedroom_marker] = data;
-            }
         }
         else if (category == 2)
         {
-            if (check_product_ID(data.ID, category) == -1)
-            {
                 living_room_marker++;
                 item.living_room[living_room_marker] = data;
-            }
         }
         else if (category == 3)
         {
-            if (check_product_ID(data.ID, category) == -1)
-            {
                 dining_room_marker++;
                 item.dining_room[dining_room_marker] = data;
-            }
         }
     }
 }

@@ -1,2 +1,11 @@
 
 [ 2023-05-11 ] | Item = asd | Brand = asd | Quantity = 123 | Unit Price = 123 | Supplier = asd
+[ 2023-05-12 ] | Item = asd | Brand = asd | Quantity = 123 | Unit Price = 0 | Supplier = asd
+[ 2023-05-12 ] | Item = qwe | Brand = qwe | Quantity = 123 | Unit Price = 123 | Supplier = qwe
+[ 2023-05-12 ] | Item = asd | Brand = asd | Quantity = 123 | Unit Price = 123 | Supplier = asd
+[ 2023-05-12 ] | Item = Dining Table | Brand = BRAND D | Quantity = 5 | Unit Price = 3650 | Supplier = HOOD INC.
+[ 2023-05-12 ] | Item = asd | Brand = asd | Quantity = 123 | Unit Price = 123 | Supplier = asd
+[ 2023-05-12 ] | Item = bed | Brand = brand a | Quantity = 1 | Unit Price = 1 | Supplier = Aldrinco.
+[ 2023-05-12 ] | Item = bed | Brand = brand a | Quantity = 4 | Unit Price = 1500 | Supplier = Aldrin Inc.
+[ 2023-05-12 ] | Item = asd | Brand = asd | Quantity = 123 | Unit Price = 123 | Supplier = asd
+[ 2023-05-12 ] | Item = asd | Brand = asd | Quantity = 123 | Unit Price = 123 | Supplier = asd
